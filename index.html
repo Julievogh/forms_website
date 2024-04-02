@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Form</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <form action="">
+        <h2>Tilføj opskrift</h2>
+        <label for="timestamp">Oprettet:</label>
+        <input type="date" name="timestamp" id="timestamp" />
+        <label for="recipe">Opskrift</label>
+        <input type="text" name="recipe" id="recipe" />
+
+        <label for="description">Beskrivelse</label>
+        <textarea name="description" id="description"></textarea>
+        <label for="ingredients">Ingredienser</label>
+        <textarea name="ingredients" id="ingredients"></textarea>
+
+        <label for="serves">Portioner</label>
+        <input type="number" name="serves" id="serves" min="1" max="10" />
+
+        <label for="tid">Tid</label>
+        <select name="tid" id="tid">
+            <option value="15">15 min</option>
+            <option value="30">30 min</option>
+            <option value="45">45 min</option>
+            <option value="60">60 min</option>
+        </select>
+
+        <fieldset>
+            <legend>Allergi</legend>
+            <label for="allergen1"><input type="checkbox" name="allergens" id="allergen1" value="" /> Laktosefri</label>
+            <label for="allergen2"><input type="checkbox" name="allergens" id="allergen2" value="" /> Glutenfri</label>
+            <label for="allergen3"><input type="checkbox" name="allergens" id="allergen3" value="" /> Fri for æg</label>
+            <label for="allergen4"><input type="checkbox" name="allergens" id="allergen4" value="" /> Uden
+                nødder</label>
+        </fieldset>
+
+        <fieldset>
+            <legend>SU-Venlig?</legend>
+            <label for="notStudentFriendly"><input type="radio" name="studentFriendly" id="notStudentFriendly"
+                    value="no" /> Ikke SU-Venlig</label>
+            <label for="isStudentFriendly"><input type="radio" name="studentFriendly" id="isStudentFriendly"
+                    value="yes" /> SU-Venlig</label>
+        </fieldset>
+        <fieldset>
+            <label for="origin"></label>
+            <legend>Land</legend>
+            <select name="countries" id="countries">
+                <option value="Danmark">Danmark</option>
+                <option value="USA">USA</option>
+                <option value="Italien">Italien</option>
+                <option value="Indien">Indien</option>
+                <option value="Japan">Japan</option>
+            </select>
+        </fieldset>
+        <button type="button">Gem opskrift</button>
+    </form>
+    <script src="script.js" type="module"></script>
+</body>
+
+</html>
