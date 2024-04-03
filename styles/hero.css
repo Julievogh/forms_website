@@ -1,0 +1,51 @@
+header:is(body > *) {
+  --padding-bottom: 6rem;
+  display: flex;
+  flex-wrap: wrap-reverse;
+  gap: 2rem;
+  align-items: center;
+  background: url("https://www.ulcdn.net/media/collection%20and%20listing/8_reasons_why_the_parallel_modular_kitchen_i.jpg?1690286616");
+  padding-inline: max(2rem, (100% - 1200px) / 2);
+  padding-block: clamp(1rem, 5vw, 2rem) var(--padding-bottom);
+  --svg-bg: var(--svg-pattern) 50% 100% / 100% var(--padding-bottom) no-repeat,
+    linear-gradient(#ce9494 0 0) 0 0 / 100% calc(100.1% - var(--padding-bottom))
+      no-repeat;
+  -webkit-mask: var(--svg-bg);
+  mask: var(--svg-bg);
+  min-height: 60svh;
+  color: #ffffff;
+
+  & p {
+    max-width: 30ch;
+    text-wrap: balance;
+    color: rgb(26, 95, 100);
+    font-weight: 600;
+    background-color: rgba(216, 225, 226, 0.8);
+  }
+}
+
+.content {
+  flex: 1 1 300px;
+  display: grid;
+  gap: 1rem;
+}
+
+h1 {
+  font-size: clamp(2rem, 2.1vw + 1.5rem, 2.8rem);
+  font-weight: 900;
+  line-height: 1.1;
+  hyphens: auto;
+  text-transform: uppercase;
+}
+
+.text-gradient {
+  background: linear-gradient(
+      90deg,
+      oklch(46.67% 0.211 76.24),
+      oklch(68.67% 0.111 76.24)
+    )
+    border-box;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}

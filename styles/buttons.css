@@ -1,0 +1,39 @@
+.delete-btn {
+    all: unset;
+    vertical-align: middle;
+    cursor: pointer;
+    inline-size: 1.75rem;
+    block-size: 1.75rem;
+    display: grid;
+    place-content: center;
+    opacity: 0;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.delete-btn:focus-visible {
+    outline: 2px dashed #fb28a8;
+    outline-offset: 2px;
+}
+
+article:is(:hover, :focus-within) .delete-btn {
+    opacity: 1;
+}
+
+.delete-btn:active {
+    --line-stroke: #fb28a8;
+}
+
+a {
+    color: #ffffff; /* Change this to your desired color code */
+    background: linear-gradient(90deg, oklch(68.67% 0.111 76.24), oklch(67.33% 0.106 189.53)) border-box;
+
+    border: 4px solid transparent;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 6px;
+    padding: 0.5rem .75rem;
+    justify-self: start;
+}
+
+

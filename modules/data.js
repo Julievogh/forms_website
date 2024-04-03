@@ -1,8 +1,7 @@
 import { apikey, endpoint } from "./settings.js";
-
 export async function getRecipes() {
   let headersList = {
-    Accept: "*/*",
+    Accept: "application/json",
     apikey: apikey,
   };
 
@@ -12,26 +11,21 @@ export async function getRecipes() {
   });
 
   let data = await response.json();
-  console.log(data);
+  return data;
 }
+//WET - Write Everything Twice
+//DRY - Don't Repeat Yourself
+//AHA - Avoid Hasty Abstractions
 
-export async function createRecipe() {
+export async function createRecipe(recipe) {
   let headersList = {
-    Accept: "*/*",
+    Accept: "application/json",
     apikey: apikey,
+    Prefer: "return=representation",
     "Content-Type": "application/json",
   };
 
-  let bodyContent = JSON.stringify({
-    name: "Cabonara",
-    description: "Den klassiske italienske ret",
-    ingredients: ["Æg", "Pasta", "prut"],
-    serves: 2,
-    allergens: ["Laktose", "Egg", "Gluten"],
-    diet: "Omni",
-    studentFriendly: true,
-    origin: "Italy",
-  });
+  let bodyContent = JSON.stringify(recipe);
 
   let response = await fetch(endpoint, {
     method: "POST",
@@ -39,45 +33,43 @@ export async function createRecipe() {
     headers: headersList,
   });
 
-  let data = await response.json();
+  let data = await response.text();
   console.log(data);
 }
 
-export async function changeRecipe() {
+export async function deleteRecipe(id) {
   let headersList = {
-    Accept: "*/*",
+    Accept: "application/json",
+    apikey: apikey,
+    Prefer: "return=representation",
+  };
+
+  let response = await fetch(endpoint + "?id=eq." + id, {
+    method: "DELETE",
+    headers: headersList,
+  });
+
+  let data = await response.json();
+  return data;
+}
+export async function updateRecipe(id, state = true) {
+  let headersList = {
+    Accept: "application/json",
     apikey: apikey,
     Prefer: "return=representation",
     "Content-Type": "application/json",
   };
 
   let bodyContent = JSON.stringify({
-    description: "Den klassiske italienske ret (DEN BLASFEMISKE VERSION)",
-    ingredients: ["Æg", "Pasta", "Bacon", "Parmesan", "Fløde", "Tomater", "Løg"],
+    studentFriendly: state,
   });
 
-  let response = await fetch(endpoint, {
+  let response = await fetch(endpoint + "?id=eq." + id, {
     method: "PATCH",
     body: bodyContent,
     headers: headersList,
   });
 
   let data = await response.json();
-  console.log(data);
-}
-
-export async function deleteRecipe() {
-  let headersList = {
-    Accept: "*/*",
-    apikey: apikey,
-    Prefer: "return=representation",
-  };
-
-  let response = await fetch(endpoint, {
-    method: "DELETE",
-    headers: headersList,
-  });
-
-  let data = await response.json();
-  console.log(data);
+  return data;
 }

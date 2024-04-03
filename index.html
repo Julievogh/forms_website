@@ -1,70 +1,234 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Form</title>
-    <link rel="stylesheet" href="style.css" />
-</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recipes.we</title>
+    <link rel="stylesheet" href="styles/index.css" />
+  </head>
+  <body>
+    <header>
+      <div class="content">
+        <h1><span class="text-gradient">Opskrifter</span>Dine favoritter</h1>
+        <p>Gem alle dine yndlingsopskrifter her</p>
+        <a href="#main">Tilføj din opskrift</a>
+      </div>
+    </header>
 
-<body>
-    <form action="">
-        <h2>Tilføj opskrift</h2>
-        <label for="timestamp">Oprettet:</label>
-        <input type="date" name="timestamp" id="timestamp" />
-        <label for="recipe">Opskrift</label>
-        <input type="text" name="recipe" id="recipe" />
+    <main id="main">
+      <form>
+        <div class="form-group">
+          <label for="name"
+            >Opskriftnavn
+            <span class="hint">Tilføj navn til opskrift</span>
+          </label>
+          <input
+            id="name"
+            type="text"
+            name="name"
+            required
+            autocomplete="off"
+          />
+        </div>
 
-        <label for="description">Beskrivelse</label>
-        <textarea name="description" id="description"></textarea>
-        <label for="ingredients">Ingredienser</label>
-        <textarea name="ingredients" id="ingredients"></textarea>
+        <div class="form-group">
+          <label for="description">
+            Beskrivelse
+            <span class="hint">Fortæl lidt om opskriften</span>
+          </label>
+          <textarea name="description" id="description" required></textarea>
+        </div>
 
-        <label for="serves">Portioner</label>
-        <input type="number" name="serves" id="serves" min="1" max="10" />
+        <div class="form-group">
+          <label for="diet"
+            >Diæt
+            <span class="hint"></span>
+          </label>
+          <select id="diet" name="diet" required>
+            <option>Vegan</option>
+            <option>Vegetar</option>
+            <option>Pescetar</option>
+            <option>Normal</option>
+          </select>
+        </div>
 
-        <label for="tid">Tid</label>
-        <select name="tid" id="tid">
+        <div class="form-group">
+          <label for="origin">
+            Oprindelse
+            <span class="hint">Hvor kommer opskriften fra?</span>
+          </label>
+          <input type="text" id="origin" name="origin" list="countrylist" />
+          <datalist id="countrylist">
+            <option value="Danmark"></option>
+            <option value="Italien"></option>
+            <option value="Japan"></option>
+          </datalist>
+        </div>
+
+        <div class="form-group range">
+          <label for="serves">Portioner</label>
+          <div class="range-wrap" data-level-min="1" data-level-max="12">
+            <input
+              type="range"
+              step="1"
+              min="1"
+              max="12"
+              value="4"
+              list="al"
+              id="serves"
+              name="serves"
+            />
+            <datalist id="al">
+              <option value="1"></option>
+              <option value="2"></option>
+              <option value="3"></option>
+              <option value="4"></option>
+              <option value="5"></option>
+              <option value="6"></option>
+              <option value="7"></option>
+              <option value="8"></option>
+              <option value="9"></option>
+              <option value="10"></option>
+              <option value="11"></option>
+              <option value="12"></option>
+            </datalist>
+          </div>
+        </div>
+
+        <div class="form-group time">
+          <label for="time"
+            >Tid<span class="hint">Hvor lang tid tager retten?</span></label
+          >
+          <select id="time" name="time" required>
             <option value="15">15 min</option>
             <option value="30">30 min</option>
             <option value="45">45 min</option>
             <option value="60">60 min</option>
-        </select>
+          </select>
+        </div>
 
-        <fieldset>
-            <legend>Allergi</legend>
-            <label for="allergen1"><input type="checkbox" name="allergens" id="allergen1" value="" /> Laktosefri</label>
-            <label for="allergen2"><input type="checkbox" name="allergens" id="allergen2" value="" /> Glutenfri</label>
-            <label for="allergen3"><input type="checkbox" name="allergens" id="allergen3" value="" /> Fri for æg</label>
-            <label for="allergen4"><input type="checkbox" name="allergens" id="allergen4" value="" /> Uden
-                nødder</label>
-        </fieldset>
+        <div class="form-group">
+          <label for="ingredients">
+            Ingredienser
+            <span class="hint">Tilføj en ingrediens per linje</span>
+          </label>
+          <textarea name="ingredients" id="ingredients"></textarea>
+        </div>
 
-        <fieldset>
-            <legend>SU-Venlig?</legend>
-            <label for="notStudentFriendly"><input type="radio" name="studentFriendly" id="notStudentFriendly"
-                    value="no" /> Ikke SU-Venlig</label>
-            <label for="isStudentFriendly"><input type="radio" name="studentFriendly" id="isStudentFriendly"
-                    value="yes" /> SU-Venlig</label>
-        </fieldset>
-        <fieldset>
-            <label for="origin"></label>
-            <legend>Land</legend>
-            <select name="countries" id="countries">
-                <option value="Danmark">Danmark</option>
-                <option value="USA">USA</option>
-                <option value="Italien">Italien</option>
-                <option value="Indien">Indien</option>
-                <option value="Japan">Japan</option>
-            </select>
-        </fieldset>
-        <button type="button">Gem opskrift</button>
-    </form>
-    <script src="script.js" type="module"></script>
-</body>
+        <div class="form-group">
+          <label>Allergener</label>
+          <div class="allergens-options">
+            <label>
+              <input type="checkbox" name="allergens[]" value="laktose" />
+              <span>Laktose</span>
+            </label>
+            <label>
+              <input type="checkbox" name="allergens[]" value="gluten" />
+              <span>Gluten</span>
+            </label>
+            <label>
+              <input type="checkbox" name="allergens[]" value="æg" />
+              <span>Æg</span>
+            </label>
+            <label>
+              <input type="checkbox" name="allergens[]" value="nødder" />
+              <span>Nødder</span>
+            </label>
+          </div>
+        </div>
 
+        <div role="group" aria-labelledby="is-alive" class="is-alive">
+          <h2 id="is-alive" class="legend">Er den SU-venlig?</h2>
+          <div class="controls">
+            <label for="yes">
+              <input id="yes" type="radio" name="studentFriendly" value="yes" />
+              Ja
+            </label>
+            <label for="no">
+              <input
+                id="no"
+                type="radio"
+                name="studentFriendly"
+                value="no"
+                checked
+              />
+              Nej
+            </label>
+          </div>
+        </div>
+
+        <button data-add class="btn">Tilføj opskrift</button>
+      </form>
+      <section class="recipes"></section>
+    </main>
+    <template id="recipe-template">
+      <article class="card">
+        <header>
+          <div class="header-content">
+            <h2>
+              <span data-name>Brændende kærlighed</span>
+              <span data-origin>Denmark</span>
+            </h2>
+
+            <div>
+              <dl>
+                <div>
+                  <dt class="visually-hidden">Species</dt>
+                  <dd data-origin>Denmark</dd>
+                </div>
+              </dl>
+              <dl>
+                <div>
+                  <dt class="visually-hidden">Diet</dt>
+                  <dd data-diet>Vegetarian</dd>
+                </div>
+              </dl>
+             
+            </div>
+          </div>
+          <p class="status">
+            <span data-studentFriendly>Student Friendly!</span>
+          </p>
+          <img data-img alt="" />
+        </header>
+        <dl class="ingredient-list" data-ingredients>
+          <dt class="visually-hidden">Ingredients</dt>
+        </dl>
+        <section>
+          <h3>Serves</h3>
+          <meter
+            data-serves
+            min="0"
+            max="12"
+            low="0"
+            high="12"
+            value="4"
+          ></meter>
+
+           <dl>
+                <div>
+                  <dt class="visually-hidden">Time</dt>
+                  <dd data-time>15 min</dd>
+                  
+                </div>
+              </dl>
+        </section>
+
+        <div>
+          <dl>
+            <div>
+              <dt class="visually-hidden">Description</dt>
+              <dd data-description>Blabla</dd>
+            </div>
+          </dl>
+        </div>
+        <div class="actions">
+          <button data-id="15" data-action="delete">Slet</button>
+          <button data-id="15" data-action="update">Opdater</button>
+        </div>
+      </article>
+    </template>
+
+    <script type="module" src="script.js"></script>
+  </body>
 </html>
