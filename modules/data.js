@@ -1,3 +1,7 @@
+//WET - Write Everything Twice
+//DRY - Don't Repeat Yourself
+//AHA - Avoid Hasty Abstractions
+
 import { apikey, endpoint } from "./settings.js";
 export async function getRecipes() {
   let headersList = {
@@ -13,9 +17,7 @@ export async function getRecipes() {
   let data = await response.json();
   return data;
 }
-//WET - Write Everything Twice
-//DRY - Don't Repeat Yourself
-//AHA - Avoid Hasty Abstractions
+
 
 export async function createRecipe(recipe) {
   let headersList = {

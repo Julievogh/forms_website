@@ -1,9 +1,7 @@
-import {
-  createRecipe,
-  getRecipes,
-  deleteRecipe,
-  updateRecipe,
-} from "./modules/data.js";
+
+
+
+import { createRecipe, getRecipes, deleteRecipe, updateRecipe } from "./modules/data.js";
 
 import { setupCountries } from "./modules/setup.js";
 
@@ -21,12 +19,11 @@ async function showRecipes() {
     clone.querySelector("[data-name]").textContent = rec.name;
     clone.querySelector("[data-origin]").textContent = rec.origin;
     clone.querySelector("[data-description]").textContent = rec.description;
-    
+
     clone.querySelector("[data-serves]").value = rec.serves;
 
-   clone.querySelector("[data-time]").textContent = `${rec.time} min`;
+    clone.querySelector("[data-time]").textContent = `${rec.time} min`;
 
-    
     if (rec.studentFriendly) {
       clone.querySelector(".status").hidden = false;
     } else {
@@ -35,7 +32,7 @@ async function showRecipes() {
 
     const randomImgWidth = 600;
     const randomImgHeight = 300;
-    const recipeKeywords = ["food", "cooking", "recipe", "meal"];
+    /*const recipeKeywords = ["food", "cooking", "recipe", "meal"];*/
 
     const keyword = `food-${rec.id}`;
     const randomImgUrl = `https://source.unsplash.com/random/${randomImgWidth}x${randomImgHeight}/?${keyword}`;
@@ -43,18 +40,14 @@ async function showRecipes() {
     clone.querySelector("[data-img]").setAttribute("src", randomImgUrl);
 
     clone.querySelectorAll("[data-id]").forEach((e) => (e.dataset.id = rec.id));
-    clone
-      .querySelector("button[data-action='delete']")
-      .addEventListener("click", async () => {
-        await deleteRecipe(rec.id);
-        await showRecipes();
-      });
-    clone
-      .querySelector("button[data-action='update']")
-      .addEventListener("click", async () => {
-        await updateRecipe(rec.id, !rec.studentFriendly);
-        await showRecipes();
-      });
+    clone.querySelector("button[data-action='delete']").addEventListener("click", async () => {
+      await deleteRecipe(rec.id);
+      await showRecipes();
+    });
+    clone.querySelector("button[data-action='update']").addEventListener("click", async () => {
+      await updateRecipe(rec.id, !rec.studentFriendly);
+      await showRecipes();
+    });
     parent.appendChild(clone);
   });
 }
@@ -81,16 +74,13 @@ async function handleSubmit() {
       diet: formData.get("diet"),
       studentFriendly: formData.get("studentFriendly"),
       origin: formData.get("origin"),
-      time: formData.get("time")
+      time: formData.get("time"),
     });
 
-   
     form.reset();
 
-   
     showRecipes();
   });
 }
-
 
 handleSubmit();
